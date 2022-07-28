@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+//注意userInfo的所有变量名必须大写, 否则只能反序列化成0值
 type userInfo struct {
 	Name  string
 	Age   int `json:"age"`
@@ -32,4 +33,7 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("%#v\n", b) // main.userInfo{Name:"wang", Age:18, Hobby:[]string{"Golang", "TypeScript"}}
+
+	//结构体切片进行反序列化的时候, 必须传入&切片才行, 但是可以直接传进函数并进行修改
+	//json反序列化可以对结构体指针数组进行, 所以尽量用指针数组
 }
